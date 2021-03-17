@@ -15,7 +15,7 @@ export class Create extends React.Component {
             Fuel: '',
             Reg: '',
             Price: '',
-            Picture: ''
+            Poster: ''
         }
         // Methods
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,7 +26,7 @@ export class Create extends React.Component {
         this.handleCarFuelChange = this.handleCarFuelChange.bind(this);
         this.handleCarRegChange = this.handleCarRegChange.bind(this);
         this.handleCarPriceChange = this.handleCarPriceChange.bind(this);
-        this.handleCarPictureChange = this.handleCarPictureChange.bind(this);
+        this.handleCarPosterChange = this.handleCarPosterChange.bind(this);
     }
 
     // Functions to handle saving the input values to the designated variables 
@@ -52,13 +52,13 @@ export class Create extends React.Component {
         this.setState({ Price: e.target.value });
     }
 
-    handleCarPictureChange(e) {
+    handleCarPosterChange(e) {
         this.setState({ Poster: e.target.value });
     }
     // Method for handling the submit request
     handleSubmit(e) {
         alert(this.state.Name + "      " + this.state.Price +
-        "       " + this.state.Picture);
+        "       " + this.state.Poster);
     e.preventDefault();
 
         // New Player
@@ -70,7 +70,7 @@ export class Create extends React.Component {
             fuel: this.state.Fuel,
             reg: this.state.Reg,
             price: this.state.Price,
-            poster: this.state.Picture
+            poster: this.state.Poster
         };
         // New Car posted to the link
         axios.post('http://localhost:4000/api/cars/', newCar)
@@ -118,8 +118,8 @@ export class Create extends React.Component {
                             <textarea
                                 row='3'
                                 className='form-control'
-                                value={this.state.Picture}
-                                onChange={this.handleCarPictureChange}
+                                value={this.state.Poster}
+                                onChange={this.handleCarPosterChange}
                             ></textarea>
                         </div>
                         <div className='createCar'>
