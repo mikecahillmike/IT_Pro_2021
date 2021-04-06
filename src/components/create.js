@@ -8,7 +8,6 @@ export class Create extends React.Component {
         super();
 
         this.state = { // Car atrubutes
-            Name: '',
             Make: '',
             Model: '',
             Year: '',
@@ -19,7 +18,6 @@ export class Create extends React.Component {
         }
         // Methods
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleCarNameChange = this.handleCarNameChange.bind(this);
         this.handleCarMakeChange = this.handleCarMakeChange.bind(this);
         this.handleCarModelChange = this.handleCarModelChange.bind(this);
         this.handleCarYearChange = this.handleCarYearChange.bind(this);
@@ -30,9 +28,6 @@ export class Create extends React.Component {
     }
 
     // Functions to handle saving the input values to the designated variables 
-    handleCarNameChange(e) {
-        this.setState({ Name: e.target.value });
-    }
     handleCarMakeChange(e) {
         this.setState({ Name: e.target.value });
     }
@@ -57,13 +52,11 @@ export class Create extends React.Component {
     }
     // Method for handling the submit request
     handleSubmit(e) {
-        alert(this.state.Name + "      " + this.state.Price +
-        "       " + this.state.Poster);
+        alert(this.state.Make + " added to list of cars for Sale\n" + this.state.Reg );
     e.preventDefault();
 
-        // New Player
+        // New Car
         const newCar = {
-            name: this.state.Name,
             make: this.state.Make,
             model: this.state.Model,
             year: this.state.Year,
@@ -79,7 +72,6 @@ export class Create extends React.Component {
 
         // setting the state
         this.setState({
-            Name: '',
             Make: '',
             Model: '',
             Year: '',
@@ -93,18 +85,60 @@ export class Create extends React.Component {
         return (
             <div className="wrapper">
                 <div className="form-wrapper">
-                    <h1>Add New Car</h1>
+                    <h1>Car Details</h1>
                     <form onSubmit={this.handleSubmit}>
-                        <div className='playerName'>
-                            <label>Car Name</label>
+
+                        <div className='carMake'>
+                            <label>Make</label>
                             <input
                                 type='text'
                                 className='form-control'
-                                value={this.state.Name}
-                                onChange={this.handleCarNameChange}
+                                value={this.state.Make}
+                                onChange={this.handleCarMakeChange}
                             ></input>
                         </div>
-                        <div className='playerPrice'>
+
+                        <div className='carModel'>
+                            <label>Model</label>
+                            <input
+                                type='text'
+                                className='form-control'
+                                value={this.state.Model}
+                                onChange={this.handleCarMakeChange}
+                            ></input>
+                        </div>
+
+                        <div className='carYear'>
+                            <label>Year</label>
+                            <input
+                                type='text'
+                                className='form-control'
+                                value={this.state.Year}
+                                onChange={this.handleCarYearChange}
+                            ></input>
+                        </div>
+
+                        <div className='carReg'>
+                            <label>Reg</label>
+                            <input
+                                type='text'
+                                className='form-control'
+                                value={this.state.Reg}
+                                onChange={this.handleCarRegChange}
+                            ></input>
+                        </div>
+
+                        <div className='carFuel'>
+                            <label>Fuel Type</label>
+                            <input
+                                type='text'
+                                className='form-control'
+                                value={this.state.Fuel}
+                                onChange={this.handleCarFuelChange}
+                            ></input>
+                        </div>
+
+                        <div className='carPrice'>
                             <label>Car Price</label>
                             <input
                                 type='text'
