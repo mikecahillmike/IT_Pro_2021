@@ -54,7 +54,7 @@ onChangeCarReg(e) {
 }
 onChangeCarPrice(e) {
     this.setState({
-        Prive: e.target.value
+        Price: e.target.value
     })
 }
 onChangeCarPoster(e) {
@@ -93,75 +93,77 @@ onSubmit(e) {
 }
 render() {
     return (
-        <div className="App">
-            <h2> Car Details</h2>
-            <style>{'body { background-color: grey; }'}</style>
-            <form onSubmit={this.onSubmit}>
-                <div className="form-group">
-                    <label> Make: </label>
-                    <input type="text"
-                        className="form-control"
-                        value={this.state.Make}
-                        onChange={this.onChangeCarName}
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Model: </label>
-                    <input type="text"
-                        className="form-control"
-                        value={this.state.Model}
-                        onChange={this.onChangeCarModel}
-                    />
-                </div>
+        <div className="wrapper">
+            <div className="form-wrapper">
+                <h2> Car Details</h2>
                
-                <div className="form-group">
-                    <label>Year: </label>
-                    <input type="text"
-                        className="form-control"
-                        value={this.state.Year}
-                        onChange={this.onChangeCarYear}
-                    />
-                </div>
+                <form onSubmit={this.onSubmit}>
+                    <div className="carMake">
+                        <label> Make: </label>
+                        <input type="text"
+                            className="form-control"
+                            value={this.state.Make}
+                            onChange={this.onChangeCarMake}
+                        ></input>
+                    </div>
+                    <div className="carModel">
+                        <label>Model: </label>
+                        <input type="text"
+                            className="form-control"
+                            value={this.state.Model}
+                            onChange={this.onChangeCarModel}
+                        ></input>
+                    </div>
+                
+                    <div className="carYear">
+                        <label>Year: </label>
+                        <input type="text"
+                            className="form-control"
+                            value={this.state.Year}
+                            onChange={this.onChangeCarYear}
+                        />
+                    </div>
 
-                <div className="form-group">
-                    <label>Fuel: </label>
-                    <input type="text"
-                        className="form-control"
-                        value={this.state.Fuel}
-                        onChange={this.onChangeCarFuel}
-                    />
-                </div>
+                    <div className="carFuel">
+                        <label>Fuel: </label>
+                        <input type="text"
+                            className="form-control"
+                            value={this.state.Fuel}
+                            onChange={this.onChangeCarFuel}
+                        />
+                    </div>
 
-                <div className="form-group">
-                    <label>Reg: </label>
-                    <input type="text"
-                        className="form-control"
-                        value={this.state.Reg}
-                        onChange={this.onChangeCarReg}
-                    />
-                </div>
+                    <div className="carReg">
+                        <label>Reg: </label>
+                        <input type="text"
+                            className="form-control"
+                            value={this.state.Reg}
+                            onChange={this.onChangeCarReg}
+                        />
+                    </div>
 
-                <div className="form-group">
-                    <label>Price: </label>
-                    <input type="text"
-                        className="form-control"
-                        value={this.state.Price}
-                        onChange={this.onChangeCarPrice}
-                    />
-                </div>
+                    <div className="carPrice">
+                        <label>Price: </label>
+                        <input type="text"
+                            className="form-control"
+                            value={this.state.Price}
+                            onChange={this.onChangeCarPrice}
+                        />
+                    </div>
 
-                <div className="form-group">
-                    <label>Add Image: </label>
-                    <input type="text"
-                        className="form-control"  // wraps with proper spacing
-                        value={this.state.Poster}
-                        onChange={this.onChangeCarPoster} // excutes when select option changes
-                    />
-                </div>
-                <div className="form-group">
-                    <input type="submit" value="Add Car" className="btn btn-success" />  
-                </div>
-            </form>
+                    <div className="carPoster">
+                        <label>Add Image: </label>
+                        <input type="text"
+                            className="form-control"  // wraps with proper spacing
+                            value={this.state.Poster}
+                            onChange={this.onChangeCarPoster} // excutes when select option changes
+                        />
+                    </div>
+                    <div className="createCar">
+                        <input type="submit" value="Add Car" className="btn btn-success" />  
+                    </div>
+                </form>
+            </div>
         </div>
     );
 }

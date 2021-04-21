@@ -1,12 +1,12 @@
 const express = require('express')
 const app = express()
 const port = 4000
-const cors = require('cors') 
+const cors = require('cors')  
 const bodyParser = require("body-parser"); 
 const path = require('path'); 
 const mongoose = require('mongoose');  
 
-app.use(cors());  
+app.use(cors()); 
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -18,7 +18,7 @@ app.use(function (req, res, next) {
 app.use(bodyParser.urlencoded({ extended: false })) 
 app.use(bodyParser.json())  
 
-const myConnectionString = 'mongodb+srv://admin:<mongoDb123>@cluster0.otvbw.mongodb.net/cars?retryWrites=true&w=majority'  
+const myConnectionString = 'mongodb+srv://admin:mongoDb123@cluster0.ej7e1.mongodb.net/cars?retryWrites=true&w=majority'  // connect to cars database
 mongoose.connect(myConnectionString, { useNewUrlParser: true });
 
 const Schema = mongoose.Schema
@@ -35,12 +35,12 @@ var carSchema = new Schema({
 
 var CarModel = mongoose.model("car", carSchema)
 
-app.get('/api/cars', (req, res) => {  
-  
+app.get('/api/cars', (req, res) => { 
+   
     CarModel.find((err, data) => {
         res.json(data)
     })
-    app.get('/api/cars/:id', (req, res) => {  
+    app.get('/api/cars/:id', (req, res) => { 
         console.log(req.params.id);
 
         CarModel.findById(req.params.id, (err, data) => {
@@ -53,43 +53,38 @@ app.put('/api/cars/:id', (req, res) => {
     console.log("Update car: " + req.params.id)
     console.log(req.body)
 
-    CarModel.findByIdAndUpdate(req.params.id, req.body, { new: true }, 
+    CarModel.findByIdAndUpdate(req.params.id, req.body, { new: true },
         (err, data) => {
             res.send(data)
         })
 
 })
 
-app.delete('/api/cars/:id', (req, res) => { 
+app.delete('/api/cars/:id', (req, res) => {  
     console.log("Delete Ad: " + req.params.id)
     CarModel.findByIdAndDelete(req.params.id, (err, data) => {
         res.send(data);
     })
 })
 
-
 app.post('/api/cars', (req, res) => { 
     console.log('Car Ad Made')
-    console.log(req.body.make) 
     console.log(req.body.model)
     console.log(req.body.year)
-    console.log(req.body.reg)
-    console.log(req.body.fuel)
-    console.log(req.body.price)
     console.log(req.body.poster)
 
-    CarModel.create({  
+    CarModel.create({ 
         make: req.body.make,
         model: req.body.model,
         year: req.body.year,
+        fuel: req.body.fuel,
         reg: req.body.reg,
-        fuel: req.body.year,
-        price: req.body.year,
+        price: req.body.price,
         poster: req.body.poster
     })
 
     res.send('Car Listed');
 })
 app.listen(port, () => {
-    console.log(`Car app listening at http://localhost:${port}`)  
-})
+    console.log(`Car app listening at http://localhost:${port}`)
+})  
