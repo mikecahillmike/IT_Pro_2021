@@ -27,7 +27,7 @@ export class CarItem extends React.Component {
     render() {
         return (
             <div>
-                 <style>{'body { background-color: grey; }'}</style>  
+                 <style>{'body { background-color: red; }'}</style>  
                 <Card>
                     <Card.Header>{this.props.car.make}</Card.Header>
                     <Card.Body>
