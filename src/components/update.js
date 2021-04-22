@@ -3,46 +3,47 @@ import axios from 'axios';
 
 export class Update extends React.Component {
 
+
     constructor() {
         super();
-    this.onChangeCarMake = this.onChangeCarMake.bind(this);  // selected values
-    this.onChangeCarModel = this.onChangeCarModel.bind(this);
-    this.onChangeCarYear = this.onChangeCarYear.bind(this);
-    this.onChangeCarFuel = this.onChangeCarFuel.bind(this);
-    this.onChangeCarReg = this.onChangeCarReg.bind(this);
-    this.onChangeCarPrice = this.onChangeCarPrice.bind(this);
-    this.onChangeCarPoster = this.onChangeCarPoster.bind(this);
-
-    this.onSubmit = this.onSubmit.bind(this); // creates onSubmint when called
-    this.state = {
-        Make: '',
-        Model: '',
-        Year: '',
-        Fuel: '',
-        Reg: '',
-        Price: '',
-        Poster: ''
+        this.onChangeCarMake = this.onChangeCarMake.bind(this);  // selected values
+        this.onChangeCarModel = this.onChangeCarModel.bind(this);
+        this.onChangeCarYear = this.onChangeCarYear.bind(this);
+        this.onChangeCarFuel = this.onChangeCarFuel.bind(this);
+        this.onChangeCarReg = this.onChangeCarReg.bind(this);
+        this.onChangeCarPrice = this.onChangeCarPrice.bind(this);
+        this.onChangeCarPoster = this.onChangeCarPoster.bind(this);
+    
+        this.onSubmit = this.onSubmit.bind(this); // creates onSubmint when called
+        this.state = {
+            Make: '',
+            Model: '',
+            Year: '',
+            Fuel: '',
+            Reg: '',
+            Price: '',
+            Poster: ''
+        }
     }
-    }
 
-    componentDidMount(){// Method for getting car id to edit the details of that car
+    componentDidMount(){
         console.log(this.props.match.params.id); 
 
-        axios.get('http://localhost:4000/api/cars/'+this.props.match.params.id)
+        axios.get('http://localhost:4000/api/cars/'+this.props.match.params.id) 
         .then(response => {
-            this.setState({ 
+            this.setState({  // function
                 _id:response.data._id,
-                Make:response.data.Make,
-                Model:response.data.Model,
-                Year:response.data.Year,
-                Fuel:response.data.Fuel,
-                Reg:response.data.Reg,
-                Price:response.data.Price,
+                Make:response.data.make,
+                Model:response.data.model,
+                Year:response.data.year,
+                Fuel:response.data.fuel,
+                Reg:response.data.reg,
+                Price:response.data.price,
                 Poster:response.data.poster    
             })
         })
         .catch((error)=>{
-            console.log(error); // Catch error and log to the console
+            console.log(error); 
         })
     }
 
@@ -82,7 +83,7 @@ export class Update extends React.Component {
             Poster: e.target.value
         })
     }
-    onSubmit(e) {
+    onSubmit(e) {  // event
         e.preventDefault();
         alert("Car: " + this.state.Make + " "  // text box for info added
             + this.state.Model + " " +
@@ -91,93 +92,96 @@ export class Update extends React.Component {
             this.state.Reg + " " +
             this.state.Price + " " +
             this.state.Poster);
-    
+        
         const newCar = {
-            Make: this.state.Make,
-            Model: this.state.Model,
+            make: this.state.Make,
+            model: this.state.Model,
             year: this.state.Year,
-            Fuel: this.state.Fuel,
-            Reg: this.state.Reg,
-            Price: this.state.Price,
-            poster: this.state.Poster  // new car details desplayed
-    
-        }
-        axios.post('http://localhost:4000/api/cars/', newCar)
-            .then((res) => {
-                console.log(res)
-    
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
+            fuel: this.state.Fuel,
+            reg: this.state.Reg,
+            price: this.state.Price,
+            poster: this.state.Poster,  // new car details desplayed
+            _id: this.state._id  
 
-    
+        }
+       axios.put('http://localhost:4000/api/cars/'+this.state._id, newCar)  
+       .then(res =>{
+           console.log(res.data)
+       })
+       .catch()
+        
+    }
     render() {
         return (
-            <div className="wrapper">
-            <div className="form-wrapper">
-                <h2> Car Details</h2>
-               
+            <div className="App">
+                <h2>Enter Car Details</h2>
+                <style>{'body { background-color: red; }'}</style>  
                 <form onSubmit={this.onSubmit}>
-                    <div className="carMake">
-                        <label>Make: </label>
-                        <input type="text" placeholder={this.state.make}
+                    <div className="form-group">
+                        <label>Add Make: </label>
+                        <input type="text"
                             className="form-control"
                             value={this.state.Make}
                             onChange={this.onChangeCarMake}
-                        ></input>
+                        />
                     </div>
-                    <div className="carModel">
-                        <label>Model: </label>
-                        <input type="text" placeholder={this.state.model}
+                    <div className="form-group">
+                        <label>Add Model: </label> 
+                        <input type="text"
                             className="form-control"
                             value={this.state.Model}
                             onChange={this.onChangeCarModel}
-                        ></input>
+                        />
                     </div>
-                
-                    <div className="carYear">
-                        <label>Year: </label>
-                        <input type="text" placeholder={this.state.year}
+                    <div className="form-group">
+                        <label>Add Year: </label>
+                        <input type="text"
                             className="form-control"
                             value={this.state.Year}
                             onChange={this.onChangeCarYear}
                         />
+                         
                     </div>
-
-                    <div className="carFuel">
-                        <label>Fuel: </label>
-                        <input type="text" placeholder={this.state.fuel}
+                    <div className="form-group">
+                        <label>Add Fuel: </label>
+                        <input type="text"
                             className="form-control"
                             value={this.state.Fuel}
                             onChange={this.onChangeCarFuel}
                         />
+                         
                     </div>
-
-                    <div className="carReg">
-                        <label>Reg: </label>
-                        <input type="text" placeholder={this.state.reg}
+                    <div className="form-group">
+                        <label>Add Reg: </label>
+                        <input type="text"
                             className="form-control"
                             value={this.state.Reg}
                             onChange={this.onChangeCarReg}
                         />
+                         
                     </div>
-
-                    <div className="carPrice">
-                        <label>Price: </label>
-                        <input type="text" placeholder={this.state.price}
+                    <div className="form-group">
+                        <label>Add Price: </label>
+                        <input type="text"
                             className="form-control"
                             value={this.state.Price}
                             onChange={this.onChangeCarPrice}
                         />
+                         
+                         </div>
+                         <div className="form-group">
+                             <label>Add Picture: </label>
+                             <input type="text"
+                                 className="form-control"
+                                 value={this.state.Poster}
+                                 onChange={this.onChangeCarPoster}
+                             />
                     </div>
-                    <div className="createCar">
-                        <input type="submit" value="Update Car" className="btn btn-success" />  
+                    <div className="form-group">
+                        <input type="submit" value="Update Ad" className="btn btn-success" /> 
                     </div>
                 </form>
             </div>
-        </div>
-        )
+        );
     }
 }

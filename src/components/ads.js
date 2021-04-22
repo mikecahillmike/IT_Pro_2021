@@ -1,7 +1,6 @@
 import React from 'react';
 import { Cars } from './cars';
 import axios from 'axios';  
-import Image from 'react-bootstrap/Image'
 
 export class Ads extends React.Component {
 

@@ -4,7 +4,7 @@ import { Component } from 'react';
 import { homePage } from './components/homePage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav } from 'react-bootstrap';
-
+import { Updatedad } from './components/updatedad'; 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Create } from './components/create';
 import { Ads } from './components/ads';
@@ -29,7 +29,9 @@ class App extends Component {
             <Route path='/' component={homePage} exact />
             <Route path='/create' component={Create} exact />
             <Route path='/ads' component={Ads} exact />
-            <Route path='/update' component={Update} exact />
+            <Route path='/updatedad' component={Updatedad} exact />
+            <Route path='/update/:id' component={Update} exact />
+           
           </Switch>
         </div>
       </Router>

@@ -38,7 +38,7 @@ export class CarItem extends React.Component {
                             </footer>
                         </blockquote>
                     </Card.Body>
-                    <Link to={"/update"} className="btn btn-success">Update</Link>
+                    <Link to={"/update/"+ this.props.car._id} className="btn btn-success" >Update</Link>
                <Button variant="danger" onClick={this.DeleteCar}size="sm">Delete</Button> 
                 </Card>
 
