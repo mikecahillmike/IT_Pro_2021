@@ -65,20 +65,15 @@ onChangeCarPoster(e) {
 onSubmit(e) {
     e.preventDefault();
     alert("Car: " + this.state.Make + " "  // text box for info added
-        + this.state.Model + " " +
-        this.state.Year + " " +
-        this.state.Feul + " " +
-        this.state.Reg + " " +
-        this.state.Price + " " +
-        this.state.Poster);
+        + this.state.Model);
 
     const newCar = {
-        Make: this.state.Make,
-        Model: this.state.Model,
+        make: this.state.Make,
+        model: this.state.Model,
         year: this.state.Year,
-        Fuel: this.state.Fuel,
-        Reg: this.state.Reg,
-        Price: this.state.Price,
+        fuel: this.state.Fuel,
+        reg: this.state.Reg,
+        price: this.state.Price,
         poster: this.state.Poster  // new car details desplayed
 
     }

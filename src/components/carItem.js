@@ -17,10 +17,10 @@ export class CarItem extends React.Component {
         console.log("Delete: "+this.props.car._id); // log car id to console
         
         axios.delete("http://localhost:4000/api/cars/"+this.props.car._id)
-        .then(()=>{
-            this.props.ReloadData()  // reloads data
-        })
-        .catch();
+        .then()
+      .catch();
+    // Reload page when player is deleted
+    window.location.reload(true);
 
     }
 
@@ -38,7 +38,7 @@ export class CarItem extends React.Component {
                             </footer>
                         </blockquote>
                     </Card.Body>
-                    <Link to={"/update/"+ this.props.car._id} className="btn btn-success" >Update</Link>
+                    <Link to={"/update"} className="btn btn-success">Update</Link>
                <Button variant="danger" onClick={this.DeleteCar}size="sm">Delete</Button> 
                 </Card>
 
